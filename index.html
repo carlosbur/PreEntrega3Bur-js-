@@ -35,7 +35,8 @@
                             </li>
                         </ul>
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input id="buscador" class="form-control me-2" type="search" placeholder="Search"
+                                aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -49,46 +50,48 @@
     <main>
         <section>
             <button id=verCatalogo type="button" class="btn btn-primary">Ver Catálogo</button>
-            <button id=ocultarCatalogo  type="button" class="btn btn-primary">Ocultar Catálogo</button>
+            <button id=ocultarCatalogo type="button" class="btn btn-primary">Ocultar Catálogo</button>
+            <button id="agregarProducto" data-bs-toggle="modal" data-bs-target="#idModalAgregarProducto"
+                    class="btn btn-secondary">Agregar Producto</button>
+            <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modal-body">
+                            <form id="formAgregarProducto">
+                                <div class="mb-3">
+                                    <label for="titulo" class="form-label">Nombre del Producto</label>
+                                    <input type="text" class="form-control" id="productoInput" aria-describedby="producto">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="autor" class="form-label">Precio</label>
+                                    <input type="number" class="form-control" id="precioInput" aria-describedby="precio">
 
-        
-            <div class= "container">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="text" id="guardarProductoBtn" class="btn btn-primary"
+                                data-bs-dismiss="modal">Guardar Producto</button>
+                        </div>
+                    </div>
+            </div>
+                
+
+            </div>
+
+
+
+
+            <div class="container">
                 <div id="coincidencia"></div>
                 <div id="productosDiv" class="row">
-            </div>
-            
-            <!-- </div>
-            <div id="catalogo" class="container text-center">
-                <div class="row">
-                 
-                    <div class="card" style="width: 18rem;">
-                        <img src="img/empeinera.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Empeinera</h5>
-                            <p class="card-text">Protector de empeine. Variedad de colores y talles.</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="img/guantines.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Guantines</h5>
-                            <p class="card-text">Guantes de competición. Evitan lesiones sin perder confort y comodidad. Talles y colores disponibles</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <img src="img/tobillera.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tobilleras</h5>
-                            <p class="card-text">Resistentes y flexibles. Aguantan goles de hasta 150 kg. sin perder su forma.</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                    </div>
-
                 </div>
-            </div> -->
 
 
 

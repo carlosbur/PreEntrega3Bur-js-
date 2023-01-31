@@ -53,5 +53,10 @@ verCatalogobtn.onclick = ()=> {
 }
 
 ocultarCatalogobtn.onclick = ()=>{
-    productosDiv.innerHTML = ""
+    productosDiv.innerHTML = `<h3> Haga click en Ver Catálogo para consultar nuestros productos<h3>`
 }
+
+let inputBuscador = document.getElementById("buscador")
+inputBuscador.addEventListener("input", ()=> {
+console.log(inputBuscador.value)  
+})
