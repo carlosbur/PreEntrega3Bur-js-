@@ -21,32 +21,30 @@ listaProductos.push(karategi, guantines, empeinera, tobillera)
 
 
 // Capturo los elementos que necesito para mi JS
-let catalogo = document.getElementById("catalogo")
+let productosDiv = document.getElementById("productosDiv")
 let verCatalogobtn = document.getElementById("verCatalogo")
 let ocultarCatalogobtn = document.getElementById("ocultarCatalogo")
 
 function verCatalogo(array){
     // reseteo
-    catalogo.innerHTML = ""
+    productosDiv.innerHTML = ""
     
     for(let producto of array){
     //código para imprimir el array
         //creamos un div padre de la card
         let nuevoProductodiv = document.createElement("div")
-        nuevoProductodiv.className = "nuevoContenedor"
+        nuevoProductodiv.className = "col-12 col-md-6 col-lg-4 my-3"
         nuevoProductodiv.innerHTML = `
-        <div class="container text-center">
-            <div id="${producto.id}" class="card" style="width: 18rem;">
-                <img class="card-img-top img-fluid" style="height: 200px;"src="img/${producto.imagen}" alt="${producto.nombreProducto}">
-                <div class="card-body">
-                    <h4 class="card-title">${producto.nombreProducto}</h4>
-                    <p class="">Precio: ${producto.precio}</p>
-                    <button id="agregarBtn${producto.id}" class="btn btn-outline-success">Comprar</button>
-                </div>
-            </div> 
-        </div>
+        <div id="${producto.id}" class="card" style="width: 18rem;">
+            <img class="card-img-top img-fluid" style="height: 200px;"src="img/${producto.imagen}" alt="${producto.nombreProducto}">
+            <div class="card-body">
+                <h4 class="card-title">${producto.nombreProducto}</h4>
+                <p class="">Precio: ${producto.precio}</p>
+                <button id="agregarBtn${producto.id}" class="btn btn-outline-success">Comprar</button>
+            </div>
+        </div> 
         `        
-        catalogo.appendChild(nuevoProductodiv)
+        productosDiv.appendChild(nuevoProductodiv)
     }
 }
 
@@ -55,5 +53,5 @@ verCatalogobtn.onclick = ()=> {
 }
 
 ocultarCatalogobtn.onclick = ()=>{
-    catalogo.innerHTML = ""
+    productosDiv.innerHTML = ""
 }
