@@ -1,31 +1,3 @@
-// Defino mi clase de productos
-class Producto{
-    constructor (id, nombreProducto, precio, imagen) {
-        this.id = id,
-        this.nombreProducto = nombreProducto,
-        this.precio = precio
-        this.imagen = imagen
-    }
-}
-
-// Instancio los primeros objetos de Producto
-const karategi = new Producto(1, "Karategi", 8400, "karategi.jpg")
-const guantines = new Producto(2, "Guantines", 3400, "guantines.jpg")
-const empeinera = new Producto(3, "Empeinera", 4400, "empeinera.jpg")
-const tobillera = new Producto(4, "Tobillera", 6400, "tobillera.jpg")
-
-
-// Creo el array de Productos y trabajo con el localStorage
-let listaProductos = []
-if(localStorage.getItem("Productos")){
-    listaProductos = JSON.parse(localStorage.getItem("Productos"))
-}else{
-    listaProductos.push(karategi, guantines, empeinera, tobillera)
-    localStorage.setItem("Productos", JSON.stringify(listaProductos))
-}
-
-
-
 // Capturo los elementos que necesito para mi JS
 let productosDiv = document.getElementById("productosDiv")
 let verCatalogobtn = document.getElementById("verCatalogo")
@@ -100,29 +72,3 @@ inputBuscador.addEventListener("input", ()=> {
 console.log(inputBuscador.value)  
 })
 
-// Dark Mode
-if(localStorage.getItem("modoOscuro")){
-    if(JSON.parse(localStorage.getItem("modoOscuro")) == true){
-        btnDark.innerText = `Light`
-        btnDark.className = `btn btn-light`
-        document.body.classList.add("darkMode")
-    }
-}else{
-    localStorage.setItem("modoOscuro", false)
-}
-
-
-btnDark.addEventListener("click", ()=> {
-    document.body.classList.toggle("darkMode")
-
-    if(JSON.parse(localStorage.getItem("modoOscuro")) == false){
-        btnDark.innerText = `Light`
-        btnDark.className = `btn btn-light`
-        localStorage.setItem("modoOscuro", true)
-    }else{
-        btnDark.innerText = `Dark`
-        btnDark.className = `btn btn-dark`
-        localStorage.setItem("modoOscuro", false)
-    }
-
-})
