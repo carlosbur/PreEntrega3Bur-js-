@@ -15,6 +15,15 @@ header{
 
 }
 
+.darkMode{
+    background-color: #323232
+}
+
+.darkMode h3 {
+    color: whitesmoke
+}
+
+
 .btn{
     margin-top: 10px;
 }

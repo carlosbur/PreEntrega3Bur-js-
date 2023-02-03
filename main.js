@@ -15,17 +15,29 @@ const empeinera = new Producto(3, "Empeinera", 4400, "empeinera.jpg")
 const tobillera = new Producto(4, "Tobillera", 6400, "tobillera.jpg")
 
 
-// Creo el array de Productos y pusheo los objetos ya existentes
-const listaProductos = []
-listaProductos.push(karategi, guantines, empeinera, tobillera)
+// Creo el array de Productos y trabajo con el localStorage
+let listaProductos = []
+if(localStorage.getItem("Productos")){
+    listaProductos = JSON.parse(localStorage.getItem("Productos"))
+}else{
+    listaProductos.push(karategi, guantines, empeinera, tobillera)
+    localStorage.setItem("Productos", JSON.stringify(listaProductos))
+}
+
 
 
 // Capturo los elementos que necesito para mi JS
 let productosDiv = document.getElementById("productosDiv")
 let verCatalogobtn = document.getElementById("verCatalogo")
 let ocultarCatalogobtn = document.getElementById("ocultarCatalogo")
+let btnDark = document.getElementById("btnDark")
+let inputBuscador = document.getElementById("buscador")
+
+
+// Funciones
 
 function verCatalogo(array){
+    
     // reseteo
     productosDiv.innerHTML = ""
     
@@ -48,6 +60,34 @@ function verCatalogo(array){
     }
 }
 
+
+function agregarProducto(array){
+    let nombreProducto = document.getElementById("productoInput")  
+    let precioProducto = document.getElementById("precioInput")
+    
+    // Construyo el nuevo producto en base a los parámetros ingresados por el usuario
+    const nuevoProducto = new Producto (array.length+1, nombreProducto.value, Number(precioProducto.value), "nuevoprod.jpg")
+    
+    // Agrego el nuevo producto al array de productos
+    array.push(nuevoProducto)
+
+    // Cargo el array en el Storage 
+    localStorage.setItem("Productos", JSON.stringify(array))
+
+
+    let formAgregarProducto = document.getElementById("formAgregarProducto")
+    formAgregarProducto.reset()
+}
+
+
+// Eventos
+
+guardarProductoBtn.addEventListener("click", ()=>{
+    agregarProducto(listaProductos)
+    verCatalogo(listaProductos)
+    
+})
+
 verCatalogobtn.onclick = ()=> {
     verCatalogo(listaProductos)
 }
@@ -56,7 +96,33 @@ ocultarCatalogobtn.onclick = ()=>{
     productosDiv.innerHTML = `<h3> Haga click en Ver Catálogo para consultar nuestros productos<h3>`
 }
 
-let inputBuscador = document.getElementById("buscador")
 inputBuscador.addEventListener("input", ()=> {
 console.log(inputBuscador.value)  
+})
+
+// Dark Mode
+if(localStorage.getItem("modoOscuro")){
+    if(JSON.parse(localStorage.getItem("modoOscuro")) == true){
+        btnDark.innerText = `Light`
+        btnDark.className = `btn btn-light`
+        document.body.classList.add("darkMode")
+    }
+}else{
+    localStorage.setItem("modoOscuro", false)
+}
+
+
+btnDark.addEventListener("click", ()=> {
+    document.body.classList.toggle("darkMode")
+
+    if(JSON.parse(localStorage.getItem("modoOscuro")) == false){
+        btnDark.innerText = `Light`
+        btnDark.className = `btn btn-light`
+        localStorage.setItem("modoOscuro", true)
+    }else{
+        btnDark.innerText = `Dark`
+        btnDark.className = `btn btn-dark`
+        localStorage.setItem("modoOscuro", false)
+    }
+
 })
