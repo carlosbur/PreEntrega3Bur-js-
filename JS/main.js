@@ -4,6 +4,7 @@ let verCatalogobtn = document.getElementById("verCatalogo")
 let ocultarCatalogobtn = document.getElementById("ocultarCatalogo")
 let btnDark = document.getElementById("btnDark")
 let inputBuscador = document.getElementById("buscador")
+let coincidencia = document.getElementById("coincidencia")
 
 
 // Funciones
@@ -51,6 +52,18 @@ function agregarProducto(array){
     formAgregarProducto.reset()
 }
 
+function buscarProd(buscado, array){
+    let busqueda = array.filter(
+        (prod) => prod.nombreProducto.toLowerCase().includes(buscado.toLowerCase()))
+    
+    if (busqueda.length == 0){
+        coincidencia.innerHTML = `<h3>No tenemos ${buscado} en nuestro stock de productos</h3>`
+        verCatalogo(busqueda)
+    } else {
+        coincidencia.innerHTML = ``
+        verCatalogo(busqueda)
+    }
+}
 
 // Eventos
 
@@ -69,6 +82,6 @@ ocultarCatalogobtn.onclick = ()=>{
 }
 
 inputBuscador.addEventListener("input", ()=> {
-console.log(inputBuscador.value)  
+    console.log(inputBuscador.value)  
+    buscarProd(inputBuscador.value, listaProductos)  
 })
-
