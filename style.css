@@ -11,7 +11,9 @@ header{
 }
 
 .header__nav{
+    justify-content:space-evenly ;
     max-width: 1200px;
+    margin-top: 10px;
 
 }
 
@@ -23,9 +25,6 @@ header{
     color: whitesmoke
 }
 
-.btn{
-    margin-top: 10px;
-}
 
 main{
     display: flex;

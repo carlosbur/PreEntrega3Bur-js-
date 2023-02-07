@@ -5,6 +5,7 @@ let ocultarCatalogobtn = document.getElementById("ocultarCatalogo")
 let btnDark = document.getElementById("btnDark")
 let inputBuscador = document.getElementById("buscador")
 let coincidencia = document.getElementById("coincidencia")
+let selectOrden = document.getElementById("selectOrden")
 
 
 // Funciones
@@ -47,7 +48,6 @@ function agregarProducto(array){
     // Cargo el array en el Storage 
     localStorage.setItem("Productos", JSON.stringify(array))
 
-
     let formAgregarProducto = document.getElementById("formAgregarProducto")
     formAgregarProducto.reset()
 }
@@ -63,6 +63,42 @@ function buscarProd(buscado, array){
         coincidencia.innerHTML = ``
         verCatalogo(busqueda)
     }
+}
+
+// Funciones para ordenar
+// Por precio de mayor a menor
+function precioMayorMenor(array){
+    // Hago una copia del array
+    let mayorMenor = [].concat(array)
+    //Ordeno con método Sort
+    mayorMenor.sort((a, b) => b.precio - a.precio)
+    verCatalogo(mayorMenor)
+}
+// Por precio de menor a mayor
+function precioMenorMayor(array){
+    // Hago una copia del array
+    let menorMayor = [].concat(array)
+    //Ordeno con método Sort
+    menorMayor.sort((a, b) => a.precio - b.precio)
+    verCatalogo(menorMayor)
+}
+
+// Alfabéticamente
+function ordenAlfa(array){
+    // Hago una copia del array
+    let alfabetico = [].concat(array)
+    //Ordeno con método Sort
+    alfabetico.sort((a, b) => {
+        if (a.nombreProducto > b.nombreProducto) {
+        return 1
+        }
+        if (a.nombreProducto < b.nombreProducto) {
+        return -1
+        }
+        // a es igual b
+        return 0
+    })
+    verCatalogo(alfabetico)
 }
 
 // Eventos
@@ -81,7 +117,21 @@ ocultarCatalogobtn.onclick = ()=>{
     productosDiv.innerHTML = `<h3> Haga click en Ver Catálogo para consultar nuestros productos<h3>`
 }
 
+// Evento Buscador 
 inputBuscador.addEventListener("input", ()=> {
-    console.log(inputBuscador.value)  
     buscarProd(inputBuscador.value, listaProductos)  
 })
+
+// Eventos ordenar productos
+
+selectOrden.addEventListener("change", ()=>{
+    if(selectOrden.value == "1"){
+        precioMayorMenor(listaProductos)
+    }else if (selectOrden.value == "2"){
+        precioMenorMayor(listaProductos)
+    }else if(selectOrden.value == "3"){
+        ordenAlfa(listaProductos)
+    }
+})
+
+
