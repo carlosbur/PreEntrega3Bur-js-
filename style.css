@@ -12,9 +12,7 @@ header{
 
 .header__nav{
     justify-content:space-evenly ;
-    max-width: 1200px;
     margin-top: 10px;
-
 }
 
 .darkMode{
@@ -25,6 +23,9 @@ header{
     color: whitesmoke
 }
 
+ul{
+    margin-bottom: 0;
+}
 
 main{
     display: flex;
