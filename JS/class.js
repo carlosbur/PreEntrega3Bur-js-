@@ -18,7 +18,11 @@ const tobillera = new Producto(4, "Tobillera", 6400, "tobillera.jpg")
 // Creo el array de Productos y trabajo con el localStorage
 let listaProductos = []
 if(localStorage.getItem("Productos")){
-    listaProductos = JSON.parse(localStorage.getItem("Productos"))
+    // listaProductos = JSON.parse(localStorage.getItem("Productos"))
+    for (let producto of JSON.parse(localStorage.getItem("Productos"))){
+        let storageProd = new Producto (producto.id, producto.nombreProducto, producto.precio, producto.imagen)
+        listaProductos.push(storageProd)
+    }
 }else{
     listaProductos.push(karategi, guantines, empeinera, tobillera)
     localStorage.setItem("Productos", JSON.stringify(listaProductos))

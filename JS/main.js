@@ -1,7 +1,5 @@
 // Capturo los elementos que necesito para mi JS
 let productosDiv = document.getElementById("productosDiv")
-// let verCatalogobtn = document.getElementById("verCatalogo")
-// let ocultarCatalogobtn = document.getElementById("ocultarCatalogo")
 let btnDark = document.getElementById("btnDark")
 let inputBuscador = document.getElementById("buscador")
 let coincidencia = document.getElementById("coincidencia")
@@ -50,7 +48,6 @@ function verCatalogo(array){
         productosDiv.appendChild(nuevoProductodiv)
         
         let agregarBtn = document.getElementById(`agregarBtn${producto.id}`)
-        console.log(agregarBtn)
         agregarBtn.onclick = ()=>{
             agregarCarrito(producto)
 
@@ -189,14 +186,6 @@ guardarProductoBtn.addEventListener("click", ()=>{
     verCatalogo(listaProductos)
     
 })
-
-// verCatalogobtn.onclick = ()=> {
-//     verCatalogo(listaProductos)
-// }
-
-// ocultarCatalogobtn.onclick = ()=>{
-//     productosDiv.innerHTML = `<h3> Haga click en Ver Catálogo para consultar nuestros productos<h3>`
-// }
 
 // Evento Buscador 
 inputBuscador.addEventListener("input", ()=> {
