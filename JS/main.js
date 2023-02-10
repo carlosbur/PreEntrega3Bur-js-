@@ -14,14 +14,10 @@ let precioTotal = document.getElementById("precioTotal")
 // Array productos en Carrito
 
 let productosCarrito
-if(localStorage.getItem("Carrito")){
 
-    productosCarrito = JSON.parse(localStorage.getItem("Carrito"))
-
-}else{
-    productosCarrito = []
-    localStorage.setItem("Carrito", productosCarrito)
-}
+localStorage.getItem("Carrito") ? 
+    productosCarrito = JSON.parse(localStorage.getItem("Carrito")) : 
+    (productosCarrito = [], localStorage.setItem("Carrito", productosCarrito))
 
 // Funciones
 
@@ -81,13 +77,10 @@ function buscarProd(buscado, array){
     let busqueda = array.filter(
         (prod) => prod.nombreProducto.toLowerCase().includes(buscado.toLowerCase()))
     
-    if (busqueda.length == 0){
-        coincidencia.innerHTML = `<h3>No tenemos ${buscado} en nuestro stock de productos</h3>`
-        verCatalogo(busqueda)
-    } else {
-        coincidencia.innerHTML = ``
-        verCatalogo(busqueda)
-    }
+        busqueda.length == 0 ? 
+        (coincidencia.innerHTML = `<h3>No tenemos ${buscado} en nuestro stock de productos</h3>`, verCatalogo(busqueda)) :
+        (coincidencia.innerHTML = ``, verCatalogo(busqueda))
+    
 }
 
 // Funciones para ordenar
